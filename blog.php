@@ -125,7 +125,7 @@
 								\"></div>";
 				 		echo "<div class=\"dataPostagem\">Postado em <span style=\"color:#9B2F4C\">07/04/2015</span></div>";
 				 		echo "<div class=\"contentDivBlog\">";
-				 		echo "<p><pre>$consulta[Texto]</pre></p>";
+				 		echo "<p>$consulta[Texto]</p>";
 				 		echo "</div>";
 					  	echo "<div class=\"separator\"><i class=\"fa fa-paw\"></i></div>";
 					  }					  

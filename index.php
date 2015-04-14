@@ -164,20 +164,93 @@
 							   echo "<div class=\"social\">";
 							   echo "<div class=\"euQuero\">Eu Quero</div>";
 							   echo "</div></div></div>";
-
-
-
-
 							  // echo "<img src='img/$consulta[Foto]'><h3>Nome: $consulta[Nome]</h3><p>Idade: $consulta[Idade]</p>"; 
 							   // codigo para mostrar os cachorros
-							  
-							}?>
-						
-						
-					</div>
-		<!--FIM LINHA 1, APENAS PRECISA SER REPLICADA COMO FOR NECESSÁRIA-->
+							}
+							   echo "<div class=\"innerDiv5 wow fadeInUp\">";
+							   echo "<div class=\"dogPicGeral\">";
+							   echo "<div class=\"dogPic2\"><img src=\"http://i1.r7.com/data/files/2C95/948F/34D0/007E/0134/D232/5EB7/5899/reuters-12jan2012-c%C3%A3o-1-TL.jpg\"></div>";
+							   echo "<div class=\"dogPic1\"><span class=\"fa fa-spinner fa-pulse\"></span></div>";
+							   echo "</div>";
+							   echo "<div class=\"bottomDogImg\">";
+							   echo "<b>Nome:</b> <span>$consulta[Nome]</span><br>";
+							   echo "<b>Idade:</b> <span>$consulta[Idade]</span><br>";
+							   echo "<div class=\"social\">";
+							   echo "<div class=\"adotado\">Adotado</div>";
+							   echo "</div></div></div>";
+							?>
 
 					</div>
+		<!--FIM LINHA 1, APENAS PRECISA SER REPLICADA COMO FOR NECESSÁRIA-->
+					<div class="formulario" id="formulario">
+						<h1 class="titForm" id="titForm" onclick="openForm()">Denúncia de animais <i class="fa fa-angle-left" id="angle"></i></h1>
+						<form>
+								Nome:<br>
+								<input type="text" class="formText"><br>
+								E-mail:<br>
+								<input type="text" class="formText"><br>
+								Assunto:<br>
+								<input type="text" class="formText"><br>
+								Mensagem:<br>
+								<textarea class="formTextarea"></textarea><br>
+								Anexar foto:<br>
+								<input type="file" class="formText2">
+						</form>
+						<div class="enviaForm"><br><div>Enviar</div></div>
+					</div>
+
+
+					<script type="text/javascript">
+						var check3=0;
+						function openForm(){
+							var w = window.innerWidth;
+		        				if (w>980){
+									if (check3==0){
+										check3++;
+										document.getElementById("titForm").style.fontSize="50px";
+										document.getElementById("titForm").style.lineHeight="70px";
+										document.getElementById("angle").className="fa fa-angle-down";
+
+										document.getElementById("formulario").style.width="80%";
+										document.getElementById("formulario").style.height="600px";
+									}
+									else{
+										check3--;
+										document.getElementById("titForm").style.fontSize="30px";
+										document.getElementById("titForm").style.lineHeight="50px";
+										document.getElementById("angle").className="fa fa-angle-left";
+
+										document.getElementById("formulario").style.width="400px";
+										document.getElementById("formulario").style.height="50px";
+
+									}
+								}
+								if (w<=980){
+									if (check3==0){
+										check3++;
+										document.getElementById("titForm").style.fontSize="40px";
+										document.getElementById("titForm").style.lineHeight="60px";
+										document.getElementById("angle").className="fa fa-angle-down";
+
+										document.getElementById("formulario").style.width="100%";
+										document.getElementById("formulario").style.height="600px";
+									}
+									else{
+										check3--;
+										document.getElementById("titForm").style.fontSize="30px";
+										document.getElementById("titForm").style.lineHeight="50px";
+										document.getElementById("angle").className="fa fa-angle-left";
+
+										document.getElementById("formulario").style.width="400px";
+										document.getElementById("formulario").style.height="50px";
+
+									}
+								}
+						}
+					</script>
+
+
+
 				</div>
 			</div>
 
@@ -186,16 +259,16 @@
 				<div class="contentDiv6">
 					<p style="text-align:center">O projeto amicão só é possível devido ao apoio de pessoas que desejam as mudanças como você.<br>Entre em contato conosco e torne-se um colaborador, em troca a sua marca pode aparecer aqui no amicão!</p>
 					<div class="colaboradores" style="margin-top:40px;">
-						<a href=""><img src="css/images/colaboradores/suamarca1.png"></a>
-						<a href=""><img src="css/images/colaboradores/suamarca2.png"></a>
-						<a href=""><img src="css/images/colaboradores/suamarca1.png"></a>
-						<a href=""><img src="css/images/colaboradores/suamarca2.png"></a>
-						<a href=""><img src="css/images/colaboradores/suamarca1.png"></a>
-						<a href=""><img src="css/images/colaboradores/suamarca2.png"></a>
-						<a href=""><img src="css/images/colaboradores/suamarca1.png"></a>
-						<a href=""><img src="css/images/colaboradores/suamarca2.png"></a>
-						<a href=""><img src="css/images/colaboradores/suamarca1.png"></a>
-						<a href=""><img src="css/images/colaboradores/suamarca2.png"></a>
+						<a onclick="location='http://www.lighterdesign.com.br'" href=""><img src="css/images/colaboradores/lighter.png"></a>
+						<a onclick="location=''" href=""><img src="css/images/colaboradores/suamarca2.png"></a>
+						<a onclick="location=''" href=""><img src="css/images/colaboradores/suamarca1.png"></a>
+						<a onclick="location=''" href=""><img src="css/images/colaboradores/suamarca2.png"></a>
+						<a onclick="location=''" href=""><img src="css/images/colaboradores/suamarca1.png"></a>
+						<a onclick="location=''" href=""><img src="css/images/colaboradores/suamarca2.png"></a>
+						<a onclick="location=''" href=""><img src="css/images/colaboradores/suamarca1.png"></a>
+						<a onclick="location=''" href=""><img src="css/images/colaboradores/suamarca2.png"></a>
+						<a onclick="location=''" href=""><img src="css/images/colaboradores/suamarca1.png"></a>
+						<a onclick="location=''" href=""><img src="css/images/colaboradores/suamarca2.png"></a>
 					</div>
 				</div>
 			</div>
@@ -203,11 +276,11 @@
 				<div class="abandono">Contatos <i class="fa fa-phone wow tada" data-wow-iteration="infinite" data-wow-duration="1500ms"></i></div>
 				<div class="contentAbandono" style="padding-bottom:20px;">	
 					<div class="innerAbandono2">
-						<i class="fa fa-phone"> <span>Telefones:</span></i><br> 
-							(51) 9999 9999<br>
-							(51) 3658 1234<br><br>
+						<i class="fa fa-lock"> <span>Acesso Restrito:</span></i><br>
+						<a onclick="location='login.php'" style="cursor:pointer;"> <i class="fa fa-angle-right" style="font-size:20px;"></i> Acesso administrativo</a><br><br>
+						
 						<i class="fa fa-paper-plane"> <span>E-mail:</span></i><br>
-							voluntariadoamicao@facebook.com
+							amicaovoluntariado@gmail.com
 					</div>
 					
 					<div class="innerAbandono2">
@@ -216,22 +289,21 @@
 							<br>
 
 						<div style="margin-top:15px"><i class="fa fa-map-marker"> <span>Endereço:</span></i><br>
-							Rua das Flores, 929<br>
+							Rua Dona Clara, 581<br>
 							Charqueadas - RS<br>
 							CEP: 96745-000</div>
 					</div>
 
 					<div class="innerAbandono2">
 						<i class="fa fa-dollar"> <span>Doações:</span></i><br>
-							Banco -<br>
-							Conta Corrente: 00000-00<br>
-							Agência: 0000<br>
-							<div style="margin-top:15px">
-							<i class="fa fa-lock"> <span>Acesso Restrito:</span></i><br>
-							<a onclick="location='login.php'" style="cursor:pointer;"> <i class="fa fa-angle-right" style="font-size:20px;"></i> Acesso administrativo</a></div>
+							Carlos Alberto Martins Luongo<br>
+							Banco Banrisul<br>
+							Ag: 0590 | CC: 35026640.06<br>
+							CPF: 226.408.510-04<br>
 					</div>
 					
 				</div>
+				
 				<div class="map">
 						<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3456.541687612685!2d-51.616471495553576!3d-29.96385884184852!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spt-BR!2sbr!4v1427999024093" width="100%" height="300px" frameborder="0" style="border:0"></iframe>
 				</div>

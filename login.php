@@ -17,7 +17,7 @@
 	}
 
 	
-	?>
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +42,7 @@
 	<meta charset="utf-8" />
 	 
 </head>
-<body>
+<body style="background-color:#FAF1D5;">
 <div class="topDivBlog" id="div1">
 	<div class="oitenta">	
 		<div class="sky">
@@ -69,14 +69,19 @@
 	<div class="vinte"></div>
 </div>
 
+<div class="divLogin">
+	<h1> Login </h1>
+	<form action="login.php" method="POST">
+		<label><i class="fa fa-paper-plane-o"></i> E-mail</label><br><input name="login" type="text" class="formTextLog"><br>
+		<label><i class="fa fa-lock"></i> Senha</label><br><input name="senha" type="password" class="formTextLog"><br>
+		<button type="submit">Enviar</button>
+	</form>
+</div>
 
-<h1> Login </h1>
-<form action="login.php" method="POST">
-	<label>Email:</label><input name="login" type="text"><br>
-	<label>Senha:</label><input name="senha" type="password"><br>
-	<button type="submit">Enviar</button>
-</form>
-
+<footer>
+	<div class="linkLighter">2015 © Amicão. Todos os direitos reservados. Desenvolvido por <a style="cursor:pointer;" onclick="location='http://www.lighterdesign.com.br'">Lighter Design.</a> 
+	</div>
+</footer>
 
 
 <script src="js/wow.min.js"></script>
