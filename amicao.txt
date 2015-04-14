@@ -1,0 +1,4 @@
+*** File Upload Details ***
+FTP Hostname: ftp.amicao.hostei.com or 31.170.160.97
+FTP Username: a8212328
+FTP Passsword: 1q2w3e4r
