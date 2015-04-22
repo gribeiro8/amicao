@@ -3,22 +3,43 @@
 	$con = mysqli_connect("localhost", "root", "root","lighterd_amicao") or print (mysql_error()); 
 	mysqli_query($con,"set names 'utf8'");
 	
-	if (isset($_POST['login'])){
-		$sql = "SELECT * FROM Usuario where Email like '".$_POST['login']."' AND Senha like '".$_POST['senha']."';";
-		//echo $sql;
-		$result = mysqli_query($con, $sql); 
-		$select = mysqli_fetch_array($result);
-		$nome = $select['Nome'];
-		$email = $select['Email'];
-		$cod = $select['CodUsuario'];
-		$_SESSION['cod'] = $cod;
-		$_SESSION['email'] = $email;
-		header('Location:admin.php');
-		
+	if(isset($_SESSION['cod'])){
+
+	if(isset($_GET['sair'])){
+		session_destroy();
+		header('Location: index.php');
 	}
 
-	
-?>
+	if (isset($_POST['nome'])){
+
+		$foto = $_FILES["foto"];
+
+		// Pega extensão da imagem
+			preg_match("/\.(gif|bmp|png|jpg|jpeg){1}$/i", $foto["name"], $ext);
+ 
+        	// Gera um nome único para a imagem
+        	$nome_imagem = md5(uniqid(time())) . "." . $ext[1];
+ 
+        	// Caminho de onde ficará a imagem
+        	$caminho_imagem = "img/" . $nome_imagem;
+ 
+			// Faz o upload da imagem para seu respectivo caminho
+			move_uploaded_file($foto["tmp_name"], $caminho_imagem);
+
+
+		$sql = "Insert into Animais (Nome,Idade,Facebook,Foto,CodUsuario) VALUES ('".$_POST['nome']."','".$_POST['idade']."','".$_POST['facebook']."','".$nome_imagem."',1);"; 
+				echo $sql;
+		mysqli_query($con,$sql); 
+		header('Location: index.php');
+	}
+
+	if (isset($_POST['titulo'])){
+		$sql = "Insert into Postagem (Titulo, Texto, CodUsuario) VALUES ('".$_POST['titulo']."','".$_POST['content']."',1);"; 
+				//echo $sql;
+		mysqli_query($con,$sql); 
+		//header('Location: login.php');
+	}
+	?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +64,7 @@
 	<meta charset="utf-8" />
 	 
 </head>
-<body style="background-color:#FAF1D5;">
+<body>
 <div class="topDivBlog" id="div1">
 	<div class="oitenta">	
 		<div class="sky">
@@ -69,20 +90,37 @@
 	</div>
 	<div class="vinte"></div>
 </div>
-
-<div class="divLogin">
-	<h1> Login </h1>
-	<form action="login.php" method="POST">
-		<label><i class="fa fa-paper-plane-o"></i> E-mail</label><br><input name="login" type="text" class="formTextLog"><br>
-		<label><i class="fa fa-lock"></i> Senha</label><br><input name="senha" type="password" class="formTextLog"><br>
-		<button type="submit">Enviar</button>
-	</form>
+<div id="menu">
+	<a href="admin.php"> Início </a>
+	<a href="admin_animais.php"> Animais </a>
+	<a href="admin_blog.php"> Blog </a>
+	<a href="admin_denuncia.php"> Denuncia </a>
 </div>
 
-<footer>
-	<div class="linkLighter">2015 © Amicão. Todos os direitos reservados. Desenvolvido por <a style="cursor:pointer;" onclick="location='http://www.lighterdesign.com.br'">Lighter Design.</a> 
-	</div>
-</footer>
+<?php 
+	echo $_SESSION['email'];
+	echo " <a href='admin.php?sair=1'>Logout</a>";?>
+
+
+
+
+<h1> Sistema de blog </h1>
+<form action="login.php" method="POST">
+	<label>Titulo:</label><input name="titulo" type="text"><br>
+	<label>Texto:</label> <textarea name="content" style="width:100%"></textarea></textarea><br>
+	
+	<button type="submit">Enviar</button>
+</form>
+
+
+
+<h1>Postagens</h1>
+<?php
+	$sql = "SELECT * FROM Postagem"; 
+	$result = mysqli_query($con, $sql); 
+ 	while($consulta = mysqli_fetch_array($result)) { 
+	   echo "<h3>Titulo: $consulta[Titulo]</h3><p>Texto: $consulta[Texto]</p>"; 
+	}?>
 
 
 <script src="js/wow.min.js"></script>
@@ -101,3 +139,4 @@
 </script>
 </body>
 </html>
+<?php }else{ header('Location: index.php');} ?>

@@ -1,6 +1,7 @@
 ﻿<?php
 	//session_start();
-	$con = mysqli_connect("localhost", "root", "root","amicao") or print (mysql_error()); 
+	$con = mysqli_connect("localhost", "root", "root","lighterd_amicao") or print (mysql_error()); 
+	mysqli_query($con,"set names 'utf8'");
 ?>
 
 <!DOCTYPE html>
@@ -150,34 +151,31 @@
 		<!--LINHA FOTOS CACHORROS-->
 					<div class="innerContentDiv5">
 						<?php
-							$sql = "SELECT * FROM Animais"; 
+							$sql = "SELECT * FROM Animais ORDER BY Status ASC"; 
 							$result = mysqli_query($con, $sql); 
 						 	while($consulta = mysqli_fetch_array($result)) { 
+						 		//print_r($consulta);
 							   echo "<div class=\"innerDiv5 wow fadeInUp\">";
 							   echo "<div class=\"dogPicGeral\">";
-							   echo "<div class=\"dogPic2\"><img src=\"http://i1.r7.com/data/files/2C95/948F/34D0/007E/0134/D232/5EB7/5899/reuters-12jan2012-c%C3%A3o-1-TL.jpg\"></div>";
+							   echo "<div class=\"dogPic2\"><img src=\"img/$consulta[Foto]\"></div>";
 							   echo "<div class=\"dogPic1\"><span class=\"fa fa-spinner fa-pulse\"></span></div>";
 							   echo "</div>";
 							   echo "<div class=\"bottomDogImg\">";
 							   echo "<b>Nome:</b> <span>$consulta[Nome]</span><br>";
 							   echo "<b>Idade:</b> <span>$consulta[Idade]</span><br>";
 							   echo "<div class=\"social\">";
-							   echo "<div class=\"euQuero\">Eu Quero</div>";
+							   //print_r($consulta[Status]);
+							   if ($consulta['Status']==0){
+							   	echo "<div class=\"euQuero\">Eu Quero</div>";
+							   }else{
+							   	echo "<div class=\"adotado\">Adotado</div>";
+							   }
+							   
 							   echo "</div></div></div>";
 							  // echo "<img src='img/$consulta[Foto]'><h3>Nome: $consulta[Nome]</h3><p>Idade: $consulta[Idade]</p>"; 
 							   // codigo para mostrar os cachorros
 							}
-							   echo "<div class=\"innerDiv5 wow fadeInUp\">";
-							   echo "<div class=\"dogPicGeral\">";
-							   echo "<div class=\"dogPic2\"><img src=\"http://i1.r7.com/data/files/2C95/948F/34D0/007E/0134/D232/5EB7/5899/reuters-12jan2012-c%C3%A3o-1-TL.jpg\"></div>";
-							   echo "<div class=\"dogPic1\"><span class=\"fa fa-spinner fa-pulse\"></span></div>";
-							   echo "</div>";
-							   echo "<div class=\"bottomDogImg\">";
-							   echo "<b>Nome:</b> <span>$consulta[Nome]</span><br>";
-							   echo "<b>Idade:</b> <span>$consulta[Idade]</span><br>";
-							   echo "<div class=\"social\">";
-							   echo "<div class=\"adotado\">Adotado</div>";
-							   echo "</div></div></div>";
+							 
 							?>
 
 					</div>

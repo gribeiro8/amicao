@@ -1,6 +1,6 @@
 ﻿<?php
 	//session_start();
-	$con = mysqli_connect("localhost", "root", "root","amicao") or print (mysql_error()); 
+	$con = mysqli_connect("localhost", "root", "root","lighterd_amicao") or print (mysql_error()); 
 ?>
 
 <!DOCTYPE html>
@@ -146,11 +146,11 @@
 				<div class="abandono">Contatos <i class="fa fa-phone wow tada" data-wow-iteration="infinite" data-wow-duration="1500ms"></i></div>
 				<div class="contentAbandono" style="padding-bottom:20px;">	
 					<div class="innerAbandono2">
-						<i class="fa fa-phone"> <span>Telefones:</span></i><br> 
-							(51) 9999 9999<br>
-							(51) 3658 1234<br><br>
+						<i class="fa fa-lock"> <span>Acesso Restrito:</span></i><br>
+						<a onclick="location='login.php'" style="cursor:pointer;"> <i class="fa fa-angle-right" style="font-size:20px;"></i> Acesso administrativo</a><br><br>
+						
 						<i class="fa fa-paper-plane"> <span>E-mail:</span></i><br>
-							voluntariadoamicao@facebook.com
+							amicaovoluntariado@gmail.com
 					</div>
 					
 					<div class="innerAbandono2">
@@ -159,23 +159,21 @@
 							<br>
 
 						<div style="margin-top:15px"><i class="fa fa-map-marker"> <span>Endereço:</span></i><br>
-							Rua das Flores, 929<br>
+							Rua Dona Clara, 581<br>
 							Charqueadas - RS<br>
 							CEP: 96745-000</div>
 					</div>
 
 					<div class="innerAbandono2">
 						<i class="fa fa-dollar"> <span>Doações:</span></i><br>
-							Banco -<br>
-							Conta Corrente: 00000-00<br>
-							Agência: 0000 <br>
-
-							<div style="margin-top:15px">
-							<i class="fa fa-lock"> <span>Acesso Restrito:</span></i><br>
-							<a onclick="location='login.php'" style="cursor:pointer;"> <i class="fa fa-angle-right" style="font-size:20px;"></i> Acesso administrativo</a></div>
+							Carlos Alberto Martins Luongo<br>
+							Banco Banrisul<br>
+							Ag: 0590 | CC: 35026640.06<br>
+							CPF: 226.408.510-04<br>
 					</div>
 					
 				</div>
+				
 				<div class="map">
 						<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3456.541687612685!2d-51.616471495553576!3d-29.96385884184852!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spt-BR!2sbr!4v1427999024093" width="100%" height="300px" frameborder="0" style="border:0"></iframe>
 				</div>

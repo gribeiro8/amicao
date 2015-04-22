@@ -1,7 +1,9 @@
 <?php
 	session_start();
-	$con = mysqli_connect("localhost", "root", "root","amicao") or print (mysql_error()); 
+	$con = mysqli_connect("localhost", "root", "root","lighterd_amicao") or print (mysql_error()); 
+	mysqli_query($con,"set names 'utf8'");
 	
+	if(isset($_SESSION['cod'])){
 
 	if(isset($_GET['sair'])){
 		session_destroy();
@@ -88,52 +90,20 @@
 	</div>
 	<div class="vinte"></div>
 </div>
+<div id="menu">
+	<a href="admin.php"> Início </a>
+	<a href="admin_animais.php"> Animais </a>
+	<a href="admin_blog.php"> Blog </a>
+	<a href="admin_denuncia.php"> Denuncia </a>
+</div>
 
-
-<?php if(isset($_SESSION['cod'])){
+<?php 
 	echo $_SESSION['email'];
-	echo " <a href='index.php?sair=1'>Logout</a>";?>
+	echo " <a href='admin.php?sair=1'>Logout</a>";?>
 
-<h1> Sistema de cadastro </h1>
-<form action="index.php" method="POST" enctype="multipart/form-data">
-	<label>Nome:</label><input name="nome" type="text"><br>
-	<label>Idade:</label><input name="idade" type="text"><br>
-	<label>Facebook:</label><input name="facebook" type="text"><br>
-	<input type="file" name="foto" /><br>
-	<button type="submit">Enviar</button>
-</form>
+<h1> Bem-vindo ao Administrador do AMICÃO </h1>
 
 
-<h1>Lista de animais</h1>
-<?php
-	$sql = "SELECT * FROM Animais"; 
-	$result = mysqli_query($con, $sql); 
- 	while($consulta = mysqli_fetch_array($result)) { 
-	   echo "<img src='img/$consulta[Foto]'><h3>Nome: $consulta[Nome]</h3><p>Idade: $consulta[Idade]</p>"; 
-	   // codigo para mostrar os cachorros
-	  
-	}?>
-
-
-<h1> Sistema de blog </h1>
-<form action="login.php" method="POST">
-	<label>Titulo:</label><input name="titulo" type="text"><br>
-	<label>Texto:</label> <textarea name="content" style="width:100%"></textarea></textarea><br>
-	
-	<button type="submit">Enviar</button>
-</form>
-
-
-
-<h1>Postagens</h1>
-<?php
-	$sql = "SELECT * FROM Postagem"; 
-	$result = mysqli_query($con, $sql); 
- 	while($consulta = mysqli_fetch_array($result)) { 
-	   echo "<h3>Titulo: $consulta[Titulo]</h3><p>Texto: $consulta[Texto]</p>"; 
-	}?>
-
-<?php } ?>
 
 <script src="js/wow.min.js"></script>
 <script src="js/wow.js"></script>
@@ -151,3 +121,4 @@
 </script>
 </body>
 </html>
+<?php }else{ header('Location: index.php');} ?>
