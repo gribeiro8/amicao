@@ -2,7 +2,30 @@
 	//session_start();
 	$con = mysqli_connect("localhost", "root", "root","lighterd_amicao") or print (mysql_error()); 
 	mysqli_query($con,"set names 'utf8'");
-?>
+
+		if (isset($_POST['nome'])){
+
+		$foto = $_FILES["foto"];
+
+		// Pega extensão da imagem
+			preg_match("/\.(gif|bmp|png|jpg|jpeg){1}$/i", $foto["name"], $ext);
+ 
+        	// Gera um nome único para a imagem
+        	$nome_imagem = md5(uniqid(time())) . "." . $ext[1];
+ 
+        	// Caminho de onde ficará a imagem
+        	$caminho_imagem = "img/denuncia/" . $nome_imagem;
+ 
+			// Faz o upload da imagem para seu respectivo caminho
+			move_uploaded_file($foto["tmp_name"], $caminho_imagem);
+
+
+		$sql = "INSERT INTO Denuncia(Nome, Email, Assunto, Mensagem, Foto) VALUES ('".$_POST['nome']."','".$_POST['email']."','".$_POST['assunto']."','".$_POST['mensagem']."','".$nome_imagem."')"; 
+		echo $sql;
+		mysqli_query($con,$sql); 
+		//header('Location: index.php');
+	}
+	?>
 
 <!DOCTYPE html>
 <html>
@@ -182,19 +205,21 @@
 		<!--FIM LINHA 1, APENAS PRECISA SER REPLICADA COMO FOR NECESSÁRIA-->
 					<div class="formulario" id="formulario">
 						<h1 class="titForm" id="titForm" onclick="openForm()">Denúncia de animais <i class="fa fa-angle-left" id="angle"></i></h1>
-						<form>
+						<form action="" method="POST" enctype="multipart/form-data">
 								Nome:<br>
-								<input type="text" class="formText"><br>
+								<input type="text" class="formText" name="nome"><br>
 								E-mail:<br>
-								<input type="text" class="formText"><br>
+								<input type="text" class="formText" name="email"><br>
 								Assunto:<br>
-								<input type="text" class="formText"><br>
+								<input type="text" class="formText" name="assunto"><br>
 								Mensagem:<br>
-								<textarea class="formTextarea"></textarea><br>
+								<textarea class="formTextarea" name="mensagem"></textarea><br>
 								Anexar foto:<br>
-								<input type="file" class="formText2">
+								<input type="file" class="formText2" name="foto">
+						
+						<div class="enviaForm"><br><div>
+						<button type="submit">Enviar</button></div></div>
 						</form>
-						<div class="enviaForm"><br><div>Enviar</div></div>
 					</div>
 
 

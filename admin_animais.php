@@ -30,7 +30,7 @@
 		$sql = "Insert into Animais (Nome,Idade,Facebook,Foto,CodUsuario) VALUES ('".$_POST['nome']."','".$_POST['idade']."','".$_POST['facebook']."','".$nome_imagem."',1);"; 
 				echo $sql;
 		mysqli_query($con,$sql); 
-		header('Location: index.php');
+		header('Location: admin_animais.php');
 	}
 
 	if (isset($_POST['titulo'])){
