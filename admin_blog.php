@@ -49,8 +49,9 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 	<link rel="shortcut icon" href="css/images/icon.png" type="image/x-icon"/>
 	<script type="text/javascript" src="js/tinymce/tinymce.min.js"></script>
-		<script type="text/javascript">
+	<script type="text/javascript">
 		tinymce.init({
+			language: 'pt_BR',
 		    selector: "textarea",
 		    plugins: [
 		        "advlist autolink lists link image charmap print preview anchor",
@@ -58,8 +59,9 @@
 		        "insertdatetime media table contextmenu paste"
 		    ],
 		    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+			
 		});
-		</script>
+	</script>
 	<title>Amicão</title>
 	<meta charset="utf-8" />
 	 
@@ -90,37 +92,63 @@
 	</div>
 	<div class="vinte"></div>
 </div>
-<div id="menu">
-	<a href="admin.php"> Início </a>
-	<a href="admin_animais.php"> Animais </a>
-	<a href="admin_blog.php"> Blog </a>
-	<a href="admin_denuncia.php"> Denuncia </a>
+
+<div class="divAdm">
+	<?php 
+		echo "<div class=\"headerAdmin\">";
+		echo $_SESSION['email'];
+		echo " | <a href='admin.php?sair=1'>Logout</a>";
+		echo "</div>"?>
+	<?php include 'menuAdmin.php' ?>
+
+
+
+
+	<h1> Sistema de blog</h1>
+	<form action="admin_blog.php" method="POST">
+		<label>Titulo:</label><br><input name="titulo" type="text" class="formTextLog"><br>
+		<div style="width:100%; max-width:1040px;margin:0 auto;">
+			<label>Texto:</label> <textarea name="content" style="width:100%;"></textarea></textarea>
+		</div>
+		
+		<button type="submit" class="butn">Enviar</button>
+	</form>
+
+
+
+	<h1>Postagens</h1>
+	<?php
+		$sql = "SELECT * FROM Postagem"; 
+		$result = mysqli_query($con, $sql); 
+	 	while($consulta = mysqli_fetch_array($result)) {
+		    echo "<div class=\"hideNews\" id=\"$consulta[CodPostagem]\" onclick=\"abrePostagem(this.id)\">";
+			echo "<h3><i class=\"fa fa-angle-right\"></i>$consulta[Titulo]";
+			echo "<b>27/04/2015 <i class=\"fa fa-trash\" title=\"Deletar\"></i>";
+			echo "<i class=\"fa fa-pencil\" title=\"Editar\"></i></b></h3>";
+			echo "<p>$consulta[Texto]</p></div>"; 
+		}?>
+
+		<script type="text/javascript">
+		checkPost=0;
+		function abrePostagem(id){
+			if (checkPost==0) {
+				checkPost++;
+				document.getElementById(id).style.height="auto";
+			}
+			else{
+				checkPost--;
+				document.getElementById(id).style.height="30px";	
+			}
+		}
+		</script>
+
 </div>
-
-<?php 
-	echo $_SESSION['email'];
-	echo " <a href='admin.php?sair=1'>Logout</a>";?>
-
-
+<footer>
+	<div class="linkLighter">2015 © Amicão. Todos os direitos reservados. Desenvolvido por <a style="cursor:pointer;" onclick="location='http://www.lighterdesign.com.br'">Lighter Design.</a> 
+	</div>
+</footer>
 
 
-<h1> Sistema de blog </h1>
-<form action="login.php" method="POST">
-	<label>Titulo:</label><input name="titulo" type="text"><br>
-	<label>Texto:</label> <textarea name="content" style="width:100%"></textarea></textarea><br>
-	
-	<button type="submit">Enviar</button>
-</form>
-
-
-
-<h1>Postagens</h1>
-<?php
-	$sql = "SELECT * FROM Postagem"; 
-	$result = mysqli_query($con, $sql); 
- 	while($consulta = mysqli_fetch_array($result)) { 
-	   echo "<h3>Titulo: $consulta[Titulo]</h3><p>Texto: $consulta[Texto]</p>"; 
-	}?>
 
 
 <script src="js/wow.min.js"></script>

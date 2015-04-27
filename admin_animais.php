@@ -27,7 +27,7 @@
 			move_uploaded_file($foto["tmp_name"], $caminho_imagem);
 
 
-		$sql = "Insert into Animais (Nome,Idade,Facebook,Foto,CodUsuario) VALUES ('".$_POST['nome']."','".$_POST['idade']."','".$_POST['facebook']."','".$nome_imagem."',1);"; 
+		$sql = "Insert into Animais (Nome,Idade,Sexo,Foto,CodUsuario) VALUES ('".$_POST['nome']."','".$_POST['idade']."','".$_POST['sexo']."','".$nome_imagem."',1);"; 
 				echo $sql;
 		mysqli_query($con,$sql); 
 		header('Location: admin_animais.php');
@@ -130,9 +130,9 @@
 		<form action="admin_animais.php" method="POST" enctype="multipart/form-data">
 			<label>Nome:</label><br><input name="nome" type="text" class="formTextLog"><br>
 			<label>Idade:</label><br><input name="idade" type="text" class="formTextLog"><br>
-			<label>Facebook:</label><br><input name="facebook" type="text" class="formTextLog"><br>
+			<label><i class="fa fa-venus-mars"></i> Sexo</label><br><input name="sexo" type="text" class="formTextLog"><br>
 			<input type="file" name="foto" class="formTextLog"><br>
-			<button type="submit">Cadastrar</button>
+			<button type="submit" class="butn">Cadastrar</button>
 		</form>
 
 
@@ -142,29 +142,27 @@
 			$result = mysqli_query($con, $sql);
 			echo "<div class=\"lineDogs\">"; 
 		 	while($consulta = mysqli_fetch_array($result)) { 
-			   echo "<div class=\"dogsAdmin\">
-			   			<div class=\"dogsAdmin1\">
-			   				<div class=\"imgDog\" style=\"
-							   	background: url('img/$consulta[Foto]') no-repeat center center;
+			    echo "<div class=\"dogsAdmin\">";
+			   	echo "<div class=\"dogsAdmin1\">";
+			   	echo "<div class=\"imgDog\" style=\"";
+				echo "background: url('img/$consulta[Foto]') no-repeat center center;
 								-webkit-background-size: cover;
 						  		-moz-background-size: cover;
 						  		-o-background-size: cover;
 						  		background-size: cover;\">
-					  		</div>
-					  		<h3>Nome: <span id=\"nomeDog$consulta[CodAnimais]\">$consulta[Nome]</span></h3>
-					  		<p>Idade: $consulta[Idade]</p>
-					  	</div>
-					  	<div class=\"dogsAdminHover\">
-					  		<div class=\"bots\">
-						  		<i title=\"Deletar\" class=\"fa fa-trash\" style=\"background-color:rgba(252,23,23,1); width:40px; height:40px; 
-						  										 padding:10px; color:#fff; font-size:40px;
-						  										 margin-right:10px; cursor:pointer;opacity:1;\"></i>
-						  		<i id=\"$consulta[CodAnimais]\" onclick=\"openEdit(this.id)\" title=\"Editar\" class=\"fa fa-pencil\" style=\"background-color:#f1c40f; width:40px; height:40px; 
-						  										 padding:10px; color:#fff; font-size:40px;
-						  										 cursor:pointer; opacity:1;\"></i>
-					  		</div>
-					  	</div>
-					  </div>"; 
+					  		</div>";
+				echo "<h3>Nome: <span id=\"nomeDog$consulta[CodAnimais]\">$consulta[Nome]</span></h3>";
+				echo "<p>Idade: $consulta[Idade]</p>
+					  	</div>";
+				echo "<div class=\"dogsAdminHover\">
+					  		<div class=\"bots\">";
+				echo "<i title=\"Deletar\" class=\"fa fa-trash\" style=\"background-color:rgba(252,23,23,1); width:40px; height:40px;";
+				echo "padding:10px; color:#fff; font-size:40px;
+					  margin-right:10px; cursor:pointer;opacity:1;\"></i>";
+				echo "<i id=\"$consulta[CodAnimais]\" onclick=\"openEdit(this.id)\" title=\"Editar\""; 
+				echo "class=\"fa fa-pencil\" style=\"background-color:#f1c40f; width:40px; height:40px;";
+				echo " padding:10px; color:#fff; font-size:40px;cursor:pointer; opacity:1;\"></i>";
+				echo "</div></div></div>"; 
 			   // codigo para mostrar os cachorros  
 				}
 			echo "</div>";
