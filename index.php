@@ -180,7 +180,12 @@
 						 		//print_r($consulta);
 							   echo "<div class=\"innerDiv5 wow fadeInUp\">";
 							   echo "<div class=\"dogPicGeral\">";
-							   echo "<div class=\"dogPic2\"><img src=\"img/$consulta[Foto]\"></div>";
+							   echo "<div class=\"dogPic2\" style=\"
+								   	background: url('img/$consulta[Foto]') no-repeat center center;
+									-webkit-background-size: cover;
+							  		-moz-background-size: cover;
+							  		-o-background-size: cover;
+							  		background-size: cover;\"></div>";
 							   echo "<div class=\"dogPic1\"><span class=\"fa fa-spinner fa-pulse\"></span></div>";
 							   echo "</div>";
 							   echo "<div class=\"bottomDogImg\">";
@@ -217,8 +222,9 @@
 								Anexar foto:<br>
 								<input type="file" class="formText2" name="foto">
 						
-						<div class="enviaForm"><br><div>
-						<button type="submit">Enviar</button></div></div>
+							<div class="enviaForm"><br>
+								<button type="submit">Enviar</button>
+							</div>
 						</form>
 					</div>
 

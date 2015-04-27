@@ -90,19 +90,41 @@
 	</div>
 	<div class="vinte"></div>
 </div>
-<div id="menu">
-	<a href="admin.php"> Início </a>
-	<a href="admin_animais.php"> Animais </a>
-	<a href="admin_blog.php"> Blog </a>
-	<a href="admin_denuncia.php"> Denuncia </a>
+<div class="divLogin">
+	<?php 
+		echo "<div class=\"headerAdmin\">";
+		echo $_SESSION['email'];
+		echo " | <a href='admin.php?sair=1'>Logout</a>";
+		echo "</div>"?>
+
+	<h1> Bem-vindo<br>Administrador do AMICÃO </h1>
+
+		<div class="menuAdminInicio">
+			<a href="admin.php"><div class="menuAdminInner">
+				<i class="fa fa-home"></i>
+				<span>Início</span>
+			</div></a>
+			<a href="admin_animais.php"><div class="menuAdminInner">
+				<i class="fa fa-paw"></i>
+				<span>Animais</span>
+			</div></a>
+			<a href="admin_blog.php"><div class="menuAdminInner">
+				<i class="fa fa-newspaper-o"></i>
+				<span>Blog</span>
+			</div></a>
+			<a href="admin_denuncia.php"><div class="menuAdminInner" style="margin-right:0;">
+				<i class="fa fa-ban"></i>
+				<span>Denúncias</span>
+			</div></a>
+		</div>
+
+
 </div>
 
-<?php 
-	echo $_SESSION['email'];
-	echo " <a href='admin.php?sair=1'>Logout</a>";?>
-
-<h1> Bem-vindo ao Administrador do AMICÃO </h1>
-
+<footer>
+	<div class="linkLighter">2015 © Amicão. Todos os direitos reservados. Desenvolvido por <a style="cursor:pointer;" onclick="location='http://www.lighterdesign.com.br'">Lighter Design.</a> 
+	</div>
+</footer>
 
 
 <script src="js/wow.min.js"></script>

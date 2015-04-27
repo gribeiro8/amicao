@@ -39,7 +39,7 @@
 		mysqli_query($con,$sql); 
 		//header('Location: login.php');
 	}
-	?>
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -90,37 +90,90 @@
 	</div>
 	<div class="vinte"></div>
 </div>
-<div id="menu">
-	<a href="admin.php"> Início </a>
-	<a href="admin_animais.php"> Animais </a>
-	<a href="admin_blog.php"> Blog </a>
-	<a href="admin_denuncia.php"> Denuncia </a>
+
+<div class="modalEdit" id="modalEdit">
+	<div class="closeEdit" onclick="openEdit()"><i class="fa fa-close"></i></div>
+	<div class="titEdit" id="titEdit">Nome Cachorro</div>
+	<div class="imgDogModal" id="imgDogModal">
+		<img src="" id="imgDogModalIn">
+	</div>
+
 </div>
 
-<?php 
-	echo $_SESSION['email'];
-	echo " <a href='admin.php?sair=1'>Logout</a>";?>
+<script type="text/javascript">
+	var check2=0;
+	function openEdit(id){
+		//alert("nomeDog"+id);
+		if (check2==0){
+			check2++;
+			document.getElementById("modalEdit").style.left="0";
+			document.getElementById("titEdit").innerHTML = document.getElementById("nomeDog"+id).innerHTML;
+			document.getElementById("imgDogModalIn").src = document.getElementById("imgDog"+id).src;
+		}
+		else{
+			check2--;
+			document.getElementById("modalEdit").style.left="100%";
+		}
+	}
 
-<h1> Sistema de cadastro </h1>
-<form action="index.php" method="POST" enctype="multipart/form-data">
-	<label>Nome:</label><input name="nome" type="text"><br>
-	<label>Idade:</label><input name="idade" type="text"><br>
-	<label>Facebook:</label><input name="facebook" type="text"><br>
-	<input type="file" name="foto" /><br>
-	<button type="submit">Enviar</button>
-</form>
+</script>
+
+<div class="divAdm">
+		<?php 
+			echo "<div class=\"headerAdmin\">";
+			echo $_SESSION['email'];
+			echo " | <a href='admin.php?sair=1'>Logout</a>";
+			echo "</div>"?>
+		<?php include 'menuAdmin.php' ?>
+
+		<h1> Sistema de cadastro </h1>
+		<form action="admin_animais.php" method="POST" enctype="multipart/form-data">
+			<label>Nome:</label><br><input name="nome" type="text" class="formTextLog"><br>
+			<label>Idade:</label><br><input name="idade" type="text" class="formTextLog"><br>
+			<label>Facebook:</label><br><input name="facebook" type="text" class="formTextLog"><br>
+			<input type="file" name="foto" class="formTextLog"><br>
+			<button type="submit">Cadastrar</button>
+		</form>
 
 
-<h1>Lista de animais</h1>
-<?php
-	$sql = "SELECT * FROM Animais"; 
-	$result = mysqli_query($con, $sql); 
- 	while($consulta = mysqli_fetch_array($result)) { 
-	   echo "<img src='img/$consulta[Foto]'><h3>Nome: $consulta[Nome]</h3><p>Idade: $consulta[Idade]</p>"; 
-	   // codigo para mostrar os cachorros
-	  
-	}?>
-
+		<h1>Lista de animais</h1>
+		<?php
+			$sql = "SELECT * FROM Animais"; 
+			$result = mysqli_query($con, $sql);
+			echo "<div class=\"lineDogs\">"; 
+		 	while($consulta = mysqli_fetch_array($result)) { 
+			   echo "<div class=\"dogsAdmin\">
+			   			<div class=\"dogsAdmin1\">
+			   				<div class=\"imgDog\" style=\"
+							   	background: url('img/$consulta[Foto]') no-repeat center center;
+								-webkit-background-size: cover;
+						  		-moz-background-size: cover;
+						  		-o-background-size: cover;
+						  		background-size: cover;\">
+					  		</div>
+					  		<h3>Nome: <span id=\"nomeDog$consulta[CodAnimais]\">$consulta[Nome]</span></h3>
+					  		<p>Idade: $consulta[Idade]</p>
+					  	</div>
+					  	<div class=\"dogsAdminHover\">
+					  		<div class=\"bots\">
+						  		<i title=\"Deletar\" class=\"fa fa-trash\" style=\"background-color:rgba(252,23,23,1); width:40px; height:40px; 
+						  										 padding:10px; color:#fff; font-size:40px;
+						  										 margin-right:10px; cursor:pointer;opacity:1;\"></i>
+						  		<i id=\"$consulta[CodAnimais]\" onclick=\"openEdit(this.id)\" title=\"Editar\" class=\"fa fa-pencil\" style=\"background-color:#f1c40f; width:40px; height:40px; 
+						  										 padding:10px; color:#fff; font-size:40px;
+						  										 cursor:pointer; opacity:1;\"></i>
+					  		</div>
+					  	</div>
+					  </div>"; 
+			   // codigo para mostrar os cachorros  
+				}
+			echo "</div>";
+			?>
+</div>
+<footer>
+	<div class="linkLighter">2015 © Amicão. Todos os direitos reservados. Desenvolvido por <a style="cursor:pointer;" onclick="location='http://www.lighterdesign.com.br'">Lighter Design.</a> 
+	</div>
+</footer>
 
 
 
