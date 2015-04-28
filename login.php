@@ -75,7 +75,7 @@
 	<form action="login.php" method="POST">
 		<label><i class="fa fa-paper-plane-o"></i> E-mail</label><br><input name="login" type="text" class="formTextLog"><br>
 		<label><i class="fa fa-lock"></i> Senha</label><br><input name="senha" type="password" class="formTextLog"><br>
-		<button type="submit">Enviar</button>
+		<button type="submit" class="butn">Entrar</button>
 	</form>
 </div>
 

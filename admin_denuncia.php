@@ -90,32 +90,56 @@
 	</div>
 	<div class="vinte"></div>
 </div>
-<div id="menu">
-	<a href="admin.php"> Início </a>
-	<a href="admin_animais.php"> Animais </a>
-	<a href="admin_blog.php"> Blog </a>
-	<a href="admin_denuncia.php"> Denuncia </a>
+
+
+<div class="divAdm">
+	<?php 
+		echo "<div class=\"headerAdmin\">";
+		echo $_SESSION['email'];
+		echo " | <a href='admin.php?sair=1'>Logout</a>";
+		echo "</div>"?>
+	<?php include 'menuAdmin.php' ?>
+
+
+	<h1> Sistema de denuncia </h1>
+	<?php
+		$sql = "SELECT * FROM Denuncia"; 
+		$result = mysqli_query($con, $sql); 
+	 	while($consulta = mysqli_fetch_array($result)) {
+		    echo "<div class=\"hideDenun\" id=\"$consulta[CodDenuncia]\" onclick=\"abrePostagem(this.id)\">";
+			echo "<h3><i class=\"fa fa-angle-down\"></i>$consulta[Nome]";
+			echo "<b>27/04/2015 <i class=\"fa fa-trash\" title=\"Deletar\"></i>";
+			echo "</b></h3><div class=\"imgDenun\" style=\"";
+			echo "background: url('img/denuncia/$consulta[Foto]') no-repeat center center;";
+			echo "-webkit-background-size: cover;";
+			echo "-moz-background-size: cover;";
+			echo "-o-background-size: cover;";
+			echo "background-size: cover;\">";
+			echo "</div> <div class=\"rightDenun\"><h2>$consulta[Assunto]</h2>";
+			echo "<p>$consulta[Mensagem]</p><h4>$consulta[Email]</h4></div></div>";
+		}?>
+
+		<script type="text/javascript">
+			checkPost=0;
+			function abrePostagem(id){
+				if (checkPost==0) {
+					checkPost++;
+					document.getElementById(id).style.height="400px";
+					//document.getElementById(id).style.overflow="auto";
+				}
+				else{
+					checkPost--;
+					document.getElementById(id).style.height="30px";
+					//document.getElementById(id).style.overflow="hidden";
+				}
+			}
+		</script>
+
 </div>
-
-<?php 
-	echo $_SESSION['email'];
-	echo " <a href='admin.php?sair=1'>Logout</a>";?>
-
-
-
-
-<h1> Sistema de denuncia </h1>
-<?php
-	$sql = "SELECT * FROM Denuncia"; 
-	$result = mysqli_query($con, $sql); 
- 	while($consulta = mysqli_fetch_array($result)) { 
-	   echo "<h3>Titulo: $consulta[Assunto]</h3>";
-	   echo "<p>Texto: $consulta[Mensagem]</p>"; 
-	   echo "<p>Nome: $consulta[Nome]</p>"; 
-	   echo "<p>Email: $consulta[Email]</p>"; 
-	   echo "<img src='img/denuncia/$consulta[Foto]'>";
-	}?>
-
+<footer>
+	<div class="linkLighter">2015 © Amicão. Todos os direitos reservados. Desenvolvido por <a style="cursor:pointer;" onclick="location='http://www.lighterdesign.com.br'">Lighter Design.</a> 
+	</div>
+</footer>
 
 <script src="js/wow.min.js"></script>
 <script src="js/wow.js"></script>

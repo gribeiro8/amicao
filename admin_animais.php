@@ -130,7 +130,8 @@
 		<form action="admin_animais.php" method="POST" enctype="multipart/form-data">
 			<label>Nome:</label><br><input name="nome" type="text" class="formTextLog"><br>
 			<label>Idade:</label><br><input name="idade" type="text" class="formTextLog"><br>
-			<label><i class="fa fa-venus-mars"></i> Sexo</label><br><input name="sexo" type="text" class="formTextLog"><br>
+			<label>Selecione o sexo:</label><br><input name="sexo" type="radio" value="macho"><label style="font-size:17px;"><i class="fa fa-mars"></i> Macho</label>
+			<br><input name="sexo" type="radio" value="femea"><label style="font-size:17px; color:#EB2D5F;"><i class="fa fa-venus"></i>Fêmea</label><br><br>
 			<input type="file" name="foto" class="formTextLog"><br>
 			<button type="submit" class="butn">Cadastrar</button>
 		</form>

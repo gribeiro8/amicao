@@ -107,10 +107,11 @@
 	<h1> Sistema de blog</h1>
 	<form action="admin_blog.php" method="POST">
 		<label>Titulo:</label><br><input name="titulo" type="text" class="formTextLog"><br>
+		<label>Foto:</label><br><input type="file" name="foto" class="formTextLog"><br><br>
 		<div style="width:100%; max-width:1040px;margin:0 auto;">
 			<label>Texto:</label> <textarea name="content" style="width:100%;"></textarea></textarea>
 		</div>
-		
+
 		<button type="submit" class="butn">Enviar</button>
 	</form>
 
@@ -125,21 +126,23 @@
 			echo "<h3><i class=\"fa fa-angle-right\"></i>$consulta[Titulo]";
 			echo "<b>27/04/2015 <i class=\"fa fa-trash\" title=\"Deletar\"></i>";
 			echo "<i class=\"fa fa-pencil\" title=\"Editar\"></i></b></h3>";
-			echo "<p>$consulta[Texto]</p></div>"; 
+			echo "$consulta[Texto]</div>";
 		}?>
 
 		<script type="text/javascript">
-		checkPost=0;
-		function abrePostagem(id){
-			if (checkPost==0) {
-				checkPost++;
-				document.getElementById(id).style.height="auto";
+			checkPost=0;
+			function abrePostagem(id){
+				if (checkPost==0) {
+					checkPost++;
+					document.getElementById(id).style.height="auto";
+					//document.getElementById(id).style.overflow="auto";
+				}
+				else{
+					checkPost--;
+					document.getElementById(id).style.height="30px";
+					//document.getElementById(id).style.overflow="hidden";
+				}
 			}
-			else{
-				checkPost--;
-				document.getElementById(id).style.height="30px";	
-			}
-		}
 		</script>
 
 </div>

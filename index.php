@@ -21,7 +21,7 @@
 
 
 		$sql = "INSERT INTO Denuncia(Nome, Email, Assunto, Mensagem, Foto) VALUES ('".$_POST['nome']."','".$_POST['email']."','".$_POST['assunto']."','".$_POST['mensagem']."','".$nome_imagem."')"; 
-		echo $sql;
+		//echo $sql;
 		mysqli_query($con,$sql); 
 		//header('Location: index.php');
 	}
